@@ -1,0 +1,22 @@
+﻿@model Project_Personal_Demo.Models.TblSkill
+
+@{
+    ViewBag.Title = "EditSkill";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yetenek Düzenleme Sayfası</h2>
+<form method="post">
+    <label>Yetenek ID</label>
+    @Html.TextBoxFor(x => x.SkillID, new { @class = "form-control" })
+    <br />
+
+    <label>Yetenek Başlığı</label>
+    @Html.TextBoxFor(x => x.SkillTitle, new { @class = "form-control" })
+    <br />
+
+    <label>Yetenek Değeri</label>
+    @Html.TextBoxFor(x => x.SkillValue, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Yetenek Güncelle</button>
+</form>

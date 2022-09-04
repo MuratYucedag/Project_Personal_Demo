@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                }
+
+        .main {
+            margin-left: 250px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="/Skill/Index/"><i class="fa fa-fw fa-home"></i> Yetenek Listesi</a>
+        <a href="#services"><i class="fa fa-fw fa-wrench"></i> Öne Çıkanlar</a>
+        <a href="#clients"><i class="fa fa-fw fa-user"></i> Eğitim</a>
+        <a href="/Experience/Index/"><i class="fa fa-fw fa-apple"></i> Deneyimlerim</a>
+        <a href="#contact"><i class="fa fa-phone fa-fw"></i> İletişim</a>
+        <a href="#contact"><i class="fa fa-book fa-fw"></i> Referanslar</a>
+        <a href="#contact"><i class="fa fa-cog fa-fw"></i> Çıkış Yap</a>
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
