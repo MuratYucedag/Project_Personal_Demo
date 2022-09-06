@@ -42,8 +42,34 @@ namespace Project_Personal_Demo.Controllers
 
         public PartialViewResult ImagePartial()
         {
+            ViewBag.v = "C# ve .Net alanında yapmış olduğum projelere ait görsellere aşağıdan ulaşabilirsiniz, daha fazlası için iletişim kısmından bana yazabilirsiniz.";
             var values = db.TblImage.ToList();
             return PartialView(values);
+        }
+
+        public PartialViewResult ExperiencePartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult EducationPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult TestimonialPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult FooterPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult ScriptPartial()
+        {
+            return PartialView();
         }
     }
 }

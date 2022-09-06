@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -272,6 +273,15 @@
     <Content Include="Views\Default\BannerPartial.cshtml" />
     <Content Include="Views\Default\SkillPartial.cshtml" />
     <Content Include="Views\Default\FeaturePartial.cshtml" />
+    <Content Include="Views\Default\ImagePartial.cshtml" />
+    <Content Include="Views\Default\ExperiencePartial.cshtml" />
+    <Content Include="Views\Default\EducationPartial.cshtml" />
+    <Content Include="Views\Default\TestimonialPartial.cshtml" />
+    <Content Include="Views\Default\FooterPartial.cshtml" />
+    <Content Include="Views\Default\ScriptPartial.cshtml" />
+    <Content Include="Views\Shared\_UILayout.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\About\StatisticsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
