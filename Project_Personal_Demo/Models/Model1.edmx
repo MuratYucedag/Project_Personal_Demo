@@ -51,6 +51,31 @@
           <Property Name="ImageDescription" Type="nvarchar" MaxLength="1000" />
           <Property Name="Cateogory" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TblMember">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MemberSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="MemberPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="MemberMail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblMemberRole">
+          <Key>
+            <PropertyRef Name="MemberRoleID" />
+          </Key>
+          <Property Name="MemberRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="RoleID" Type="int" />
+        </EntityType>
+        <EntityType Name="TblRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nchar" MaxLength="1" />
+        </EntityType>
         <EntityType Name="TblSkill">
           <Key>
             <PropertyRef Name="SkillID" />
@@ -69,14 +94,49 @@
           <Property Name="TestimonialTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="TestimonialDescription" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <Association Name="FK_TblMemberRole_TblMember">
+          <End Role="TblMember" Type="Self.TblMember" Multiplicity="0..1" />
+          <End Role="TblMemberRole" Type="Self.TblMemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TblMemberRole">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMemberRole_TblRole">
+          <End Role="TblRole" Type="Self.TblRole" Multiplicity="0..1" />
+          <End Role="TblMemberRole" Type="Self.TblMemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblRole">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="TblMemberRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PersonalDbModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEducation" EntityType="Self.TblEducation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblExperience" EntityType="Self.TblExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFeature" EntityType="Self.TblFeature" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblImage" EntityType="Self.TblImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMember" EntityType="Self.TblMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMemberRole" EntityType="Self.TblMemberRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblRole" EntityType="Self.TblRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSkill" EntityType="Self.TblSkill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblMemberRole_TblMember" Association="Self.FK_TblMemberRole_TblMember">
+            <End Role="TblMember" EntitySet="TblMember" />
+            <End Role="TblMemberRole" EntitySet="TblMemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMemberRole_TblRole" Association="Self.FK_TblMemberRole_TblRole">
+            <End Role="TblRole" EntitySet="TblRole" />
+            <End Role="TblMemberRole" EntitySet="TblMemberRole" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -154,7 +214,71 @@
           <EntitySet Name="TblImage" EntityType="Self.TblImage" />
           <EntitySet Name="TblSkill" EntityType="Self.TblSkill" />
           <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" />
+          <EntitySet Name="TblMember" EntityType="PersonalDbModel.TblMember" />
+          <EntitySet Name="TblMemberRole" EntityType="PersonalDbModel.TblMemberRole" />
+          <EntitySet Name="TblRole" EntityType="PersonalDbModel.TblRole" />
+          <AssociationSet Name="FK_TblMemberRole_TblMember" Association="PersonalDbModel.FK_TblMemberRole_TblMember">
+            <End Role="TblMember" EntitySet="TblMember" />
+            <End Role="TblMemberRole" EntitySet="TblMemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMemberRole_TblRole" Association="PersonalDbModel.FK_TblMemberRole_TblRole">
+            <End Role="TblRole" EntitySet="TblRole" />
+            <End Role="TblMemberRole" EntitySet="TblMemberRole" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TblMember">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MemberSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MemberPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MemberMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblMemberRole" Relationship="PersonalDbModel.FK_TblMemberRole_TblMember" FromRole="TblMember" ToRole="TblMemberRole" />
+        </EntityType>
+        <EntityType Name="TblMemberRole">
+          <Key>
+            <PropertyRef Name="MemberRoleID" />
+          </Key>
+          <Property Name="MemberRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="RoleID" Type="Int32" />
+          <NavigationProperty Name="TblMember" Relationship="PersonalDbModel.FK_TblMemberRole_TblMember" FromRole="TblMemberRole" ToRole="TblMember" />
+          <NavigationProperty Name="TblRole" Relationship="PersonalDbModel.FK_TblMemberRole_TblRole" FromRole="TblMemberRole" ToRole="TblRole" />
+        </EntityType>
+        <EntityType Name="TblRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TblMemberRole" Relationship="PersonalDbModel.FK_TblMemberRole_TblRole" FromRole="TblRole" ToRole="TblMemberRole" />
+        </EntityType>
+        <Association Name="FK_TblMemberRole_TblMember">
+          <End Type="PersonalDbModel.TblMember" Role="TblMember" Multiplicity="0..1" />
+          <End Type="PersonalDbModel.TblMemberRole" Role="TblMemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TblMemberRole">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMemberRole_TblRole">
+          <End Type="PersonalDbModel.TblRole" Role="TblRole" Multiplicity="0..1" />
+          <End Type="PersonalDbModel.TblMemberRole" Role="TblMemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblRole">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="TblMemberRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -229,6 +353,34 @@
                 <ScalarProperty Name="TestimonialImage" ColumnName="TestimonialImage" />
                 <ScalarProperty Name="TestimonialTitle" ColumnName="TestimonialTitle" />
                 <ScalarProperty Name="TestimonialDescription" ColumnName="TestimonialDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMember">
+            <EntityTypeMapping TypeName="PersonalDbModel.TblMember">
+              <MappingFragment StoreEntitySet="TblMember">
+                <ScalarProperty Name="MemberMail" ColumnName="MemberMail" />
+                <ScalarProperty Name="MemberPassword" ColumnName="MemberPassword" />
+                <ScalarProperty Name="MemberSurname" ColumnName="MemberSurname" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMemberRole">
+            <EntityTypeMapping TypeName="PersonalDbModel.TblMemberRole">
+              <MappingFragment StoreEntitySet="TblMemberRole">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberRoleID" ColumnName="MemberRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblRole">
+            <EntityTypeMapping TypeName="PersonalDbModel.TblRole">
+              <MappingFragment StoreEntitySet="TblRole">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

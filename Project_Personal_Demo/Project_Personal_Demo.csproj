@@ -128,8 +128,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Member\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Member\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Member\Controllers\TestimonialController.cs" />
+    <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
@@ -164,6 +169,15 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblImage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblMember.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblMemberRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblSkill.cs">
@@ -202,6 +216,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Member\Views\web.config" />
+    <Content Include="Areas\Member\Views\Shared\_MemberLayout.cshtml" />
+    <Content Include="Areas\Member\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Member\Views\Profile\EditProfile.cshtml" />
+    <Content Include="Areas\Member\Views\Login\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -242,6 +261,16 @@
     <Content Include="Templates\my_website-starter\index.html" />
     <Content Include="Templates\my_website-starter\services.html" />
     <Content Include="Templates\my_website-starter\starter-license-W3Layouts.txt" />
+    <Content Include="Templates\simple-404-template-master\404.html" />
+    <Content Include="Templates\simple-404-template-master\assets\css\style.css" />
+    <Content Include="Templates\simple-404-template-master\assets\images\404.svg" />
+    <Content Include="Templates\simple-404-template-master\favicon.png" />
+    <Content Include="Templates\simple-404-template-master\screenshot\dekstop-ss.png" />
+    <Content Include="Templates\simple-404-template-master\screenshot\mobile-browser.png" />
+    <Content Include="Templates\snow-login-form-starter\css\style.css" />
+    <Content Include="Templates\snow-login-form-starter\images\bgimage.jpg" />
+    <Content Include="Templates\snow-login-form-starter\index.html" />
+    <Content Include="Templates\snow-login-form-starter\starter-license-W3Layouts.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -282,9 +311,15 @@
     <Content Include="Views\Shared\_UILayout.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\About\StatisticsPartial.cshtml" />
+    <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Templates\simple-404-template-master\LICENSE" />
+    <Content Include="Templates\simple-404-template-master\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Member\Data\" />
+    <Folder Include="Areas\Member\Views\Testimonial\" />
+    <Folder Include="Views\Member\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

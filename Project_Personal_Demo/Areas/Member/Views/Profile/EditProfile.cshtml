@@ -1,0 +1,24 @@
+﻿@model Project_Personal_Demo.Models.TblMember
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<h2>Bilgi Güncelleme Sayfası</h2>
+
+<form method="post">
+    <label>ID</label>
+    @Html.TextBoxFor(x => x.MemberID)
+    <br />
+    <label>Ad</label>
+    @Html.TextBoxFor(x => x.MemberName)
+    <br />
+    <label>Soyad</label>
+    @Html.TextBoxFor(x => x.MemberSurname)
+    <br />
+    <label>Şifre</label>
+    @Html.TextBoxFor(x => x.MemberPassword)
+    <br />
+    <button class="btn btn-primary">Güncelle</button>
+</form>
